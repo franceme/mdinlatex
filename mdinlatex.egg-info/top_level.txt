@@ -1,2 +1,0 @@
-mdinlatex
-package_name
