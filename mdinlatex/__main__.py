@@ -60,6 +60,18 @@ if __name__ == '__main__':
 					rawd = no_tags(line,"h3")
 					section_name = "ss" + section_name
 					prefix = "subsub" + prefix
+				elif line.startswith("<ul>"):
+					rawd = "\\begin{itemize}"
+					section_name = None
+					prefix = None
+				elif line.startswith("<\\ul>"):
+					rawd = "\\end{itemize}"
+					section_name = None
+					prefix = None
+				elif line.startswith("<li>"):
+					rawd = "\t\\item " + no_tags(line,"li")
+					section_name = None
+					prefix = None
 				else:
 					rawd = no_tags(line,"p")
 					prefix = None
