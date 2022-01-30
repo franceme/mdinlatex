@@ -64,7 +64,7 @@ if __name__ == '__main__':
 					rawd = "\\begin{itemize}"
 					section_name = None
 					prefix = None
-				elif line.startswith("<\\ul>"):
+				elif line.startswith("</ul>"):
 					rawd = "\\end{itemize}"
 					section_name = None
 					prefix = None
