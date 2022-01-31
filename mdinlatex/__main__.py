@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os, sys, argparse, markdown
 from fileinput import FileInput as finput
+from bs4 import BeautifulSoup
 
 def arguments(string_set):
 	parser = argparse.ArgumentParser(description=f"Insert Markdown code into Latex File Section.")
@@ -33,6 +34,14 @@ def arguments(string_set):
 
 	return parser.parse_args(string_set)
 
+def grab_link_text(line):
+    grab_links = lambda tag: (getattr(tag, 'name', None) == 'a' and 'href' in tag.attrs)
+    
+    for result in soup.find_all(grab_links):
+       newString = f"\\href{{ {result['href']} }} {{ {result.text.strip()} }}" 
+       line = line.replace(result, newString)
+
+    return line
 
 if __name__ == '__main__':
 	self_name = os.path.basename(__file__)
@@ -84,7 +93,7 @@ if __name__ == '__main__':
 					prefix = None
 					section_name = None
 
-				rawd = no_cmt(rawd)
+				rawd = grab_link_text(no_cmt(rawd))
 				if section_name:
 					section_name = no_cmt(section_name)
 
