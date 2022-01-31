@@ -52,7 +52,7 @@ def grab_code(line):
     \\centering\\hspace*{{-0.75in}}
     \\begin{{lstlisting}}[language=Python,escapechar=@,caption={{CAPTION HERE}}, captionpos=b,label={{lst:python_label}}]
 {result.text.strip()} 
-    \\end{lstlisting}
+    \\end{{lstlisting}}
 \\end{figure}
 """
 
