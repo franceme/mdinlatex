@@ -43,6 +43,21 @@ def grab_link_text(line):
 
     return line
 
+def grab_code(line):
+    grab_links = lambda tag: (getattr(tag, 'name', None) == 'code')
+    
+    for result in BeautifulSoup(line, features="html.parser").find_all(grab_links):
+        line = f"""
+\\begin{{figure}}[H]
+    \\centering\\hspace*{{-0.75in}}
+    \\begin{{lstlisting}}[language=Python,escapechar=@,caption={{CAPTION HERE}}, captionpos=b,label={{lst:python_label}}]
+{result.text.strip()} 
+    \\end{lstlisting}
+\\end{figure}
+"""
+
+    return line
+
 if __name__ == '__main__':
 	self_name = os.path.basename(__file__)
 	args = arguments(list(filter(lambda x: not str(x).endswith(self_name), sys.argv)))
@@ -79,6 +94,10 @@ if __name__ == '__main__':
 					prefix = None
 				elif line.startswith("<li>"):
 					rawd = "\t\\item " + no_tags(line,"li")
+					section_name = None
+					prefix = None
+				elif line.startswith("<code>"):
+					rawd = grab_code(no_tags(line,"li"))
 					section_name = None
 					prefix = None
 				else:
