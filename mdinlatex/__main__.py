@@ -97,7 +97,7 @@ if __name__ == '__main__':
 					section_name = None
 					prefix = None
 				elif line.contains("<code>"):
-					rawd = grab_code(no_tags(no_tags(line,"p"),"code"))
+					rawd = grab_code(no_tags(line,"p"))
 					section_name = None
 					prefix = None
 				else:
