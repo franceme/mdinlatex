@@ -47,11 +47,12 @@ def grab_code(line):
     grab_links = lambda tag: (getattr(tag, 'name', None) == 'code')
     
     for result in BeautifulSoup(line, features="html.parser").find_all(grab_links):
+        sub = result.text.strip().replace(' | ','\n')
         line = f"""
 \\begin{{figure}}[H]
     \\centering\\hspace*{{-0.75in}}
     \\begin{{lstlisting}}[language=Python,escapechar=@,caption={{CAPTION HERE}}, captionpos=b,label={{lst:python_label}}]
-{result.text.strip().replace(' | ','\\n')} 
+{sub} 
     \\end{{lstlisting}}
 \\end{{figure}}
 """
