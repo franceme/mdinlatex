@@ -96,7 +96,7 @@ if __name__ == '__main__':
 					rawd = "\t\\item " + no_tags(line,"li")
 					section_name = None
 					prefix = None
-				elif line.contains("<code>"):
+				elif "<code>" in line:
 					rawd = grab_code(line)
 					section_name = None
 					prefix = None
