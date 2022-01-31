@@ -38,7 +38,7 @@ def grab_link_text(line):
     grab_links = lambda tag: (getattr(tag, 'name', None) == 'a' and 'href' in tag.attrs)
     
     for result in BeautifulSoup(line).find_all(grab_links):
-       newString = f"\\href{{ {result['href']} }} {{ {result.text.strip()} }}" 
+       newString = f"\\href{{ {result['href']} }}{{ {result.text.strip()} }}" 
        line = line.replace(str(result), str(newString))
 
     return line
