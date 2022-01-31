@@ -72,7 +72,7 @@ if __name__ == '__main__':
 					rawd = "\t\\item " + no_tags(line,"li")
 					section_name = None
 					prefix = None #<a href="https://google.com">Sample</a>
-				elif line.startswith("<a "):
+				elif line.startswith("<a"):
 					rawd = no_tags(line,"a")
 					name = rawd.split(">")[1]
 					link = rwad.split(">")[0].replace('"','').replace('<a href=','')
