@@ -39,7 +39,7 @@ def grab_link_text(line):
     
     for result in BeautifulSoup(line).find_all(grab_links):
        newString = f"\\href{{ {result['href']} }} {{ {result.text.strip()} }}" 
-       line = line.replace(result, newString)
+       line = line.replace(str(result), str(newString))
 
     return line
 
