@@ -3,3 +3,4 @@ build/
 package_name/__pycache__/
 mdinlatex.egg-info/
 package_name/
+mdinlatex/__pycache__/
